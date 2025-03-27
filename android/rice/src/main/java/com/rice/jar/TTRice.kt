@@ -26,9 +26,13 @@ class TTRice(val context: Context, private val pkgName: String) {
             context.startActivity(intent)
         }.onFailure {
             runCatching {
-                Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$pkgName")).apply {
-                    setPackage("com.android.vending")
-                }
+                context.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=$pkgName")
+                    ).apply {
+                        setPackage("com.android.vending")
+                    })
             }
         }
     }

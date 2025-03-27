@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/pangle_music_bg_go_t"/>
+    <foreground android:drawable="@drawable/pangle_music_f_go_t"/>
+</adaptive-icon>

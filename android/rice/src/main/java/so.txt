@@ -1,0 +1,10 @@
+
+['com.wordspot.clickword.tofill', 'com.brootrash.trybestscore',  # 包名
+               'com.wild.rice.WildPageAc',# 透明activity
+               'com.wild.rice.MillService', # JobSchedulerService
+               'com/wild/rice/RiceReceiver',  #  广播
+               'com.bytedance.sdk.openadsdk.activity.VideoGoPage','com.wordspot.clickword.tofill.wordspot.wordspot.MainActivity',  # 隐藏图标 other1","main2
+               'com/wild/rice/WildNative', '"millName"',  # jni路径及函数
+               '/Paddy'] # 外弹文件开关名
+
+

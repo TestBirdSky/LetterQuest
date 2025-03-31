@@ -29,7 +29,7 @@ object RiceJellyCache {
     var mRiceKey by RiceWarehouseCache("wiusj")
     var pkgName = ""
     var appVersion = ""
-    var isInitSuccess = false
+//    var isInitSuccess = false
     private var mRiceType = ""
     private var riceKey by RiceWarehouseCache("rice")
 
@@ -41,12 +41,17 @@ object RiceJellyCache {
             mAndroidIdStr =
                 Settings.System.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
                     .ifBlank { UUID.randomUUID().toString() }
+            runCatching {
+                val cla = Class.forName("com.wild.rice.WildNative")
+                cla.getMethod("millName", String::class.java, Boolean::class.java)
+                    .invoke(null, "lk", true)
+            }
         }
         pkgName = context.packageName
         mRiceInstallTime = context.packageManager.getPackageInfo(pkgName, 0).firstInstallTime
         appVersion = context.packageManager.getPackageInfo(pkgName, 0).versionName
         TradPlusSdk.setTradPlusInitListener {
-            isInitSuccess = true
+//            isInitSuccess = true
         }
         // todo modify
         TradPlusSdk.initSdk(context, "114FE8DB631B3389BDDDD15D81E45E39")

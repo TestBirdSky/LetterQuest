@@ -21,7 +21,7 @@ import org.json.JSONObject
  */
 abstract class BaseAdCenter : BaseNetImpl(), ConfigureListener, InterstitialAdListener {
     private var adInterstitial: TPInterstitial? = null
-    private var isLoading = false
+    protected var isLoading = false
     private var adLoadingTime = 0L
     private var adLoadedTime = 0L
     var isCanPostLog = true
@@ -59,9 +59,9 @@ abstract class BaseAdCenter : BaseNetImpl(), ConfigureListener, InterstitialAdLi
     }
 
     protected fun loadAdCenter(context: Context) {
-        if (RiceJellyCache.isInitSuccess.not()) return
+//        if (RiceJellyCache.isInitSuccess.not()) return
         if (adIdStr.isBlank()) return
-        if (isLoading && System.currentTimeMillis() - adLoadingTime < 80000) return
+        if (isLoading && System.currentTimeMillis() - adLoadingTime < 60000) return
         if (adIsReady()) return
         loadRice(context)
     }
@@ -123,7 +123,6 @@ abstract class BaseAdCenter : BaseNetImpl(), ConfigureListener, InterstitialAdLi
         isShowingAd = true
         showJob?.cancel()
         postEvent("show", "${(System.currentTimeMillis() - showEventTime) / 1000}")
-        loadAdCenter(RiceShrimp.mApplication)
         tpAdInfo?.let { tp ->
             postJson(getRiceCommon().apply {
                 put("carbine", JSONObject().apply {
@@ -148,6 +147,7 @@ abstract class BaseAdCenter : BaseNetImpl(), ConfigureListener, InterstitialAdLi
         isShowingAd = false
         eventClose?.invoke()
         eventClose = null
+        loadAdCenter(RiceShrimp.mApplication)
     }
 
     override fun onAdVideoStart(tpAdInfo: TPAdInfo?) = Unit
@@ -160,5 +160,6 @@ abstract class BaseAdCenter : BaseNetImpl(), ConfigureListener, InterstitialAdLi
         postEvent("showfailer", "${error?.errorCode}_${error?.errorMsg}")
         eventClose?.invoke()
         eventClose = null
+        loadAdCenter(RiceShrimp.mApplication)
     }
 }

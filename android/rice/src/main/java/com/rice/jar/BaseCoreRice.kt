@@ -135,6 +135,7 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent {
         if (RiceJellyCache.riceLevel.contains("Rice", true)) {
             isPlanIng = true
             mainScope.launch {
+                delay(800)
                 if (RiceJellyCache.isActionSuccess.not()) {
                     delay(8000)
                 }
@@ -188,6 +189,8 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent {
             needAdNow = false
             if (isReady) {
                 postEvent("isready", null)
+            } else if (isLoading.not()) {
+                loadAdCenter(RiceShrimp.mApplication)
             }
             mainScope.launch {
                 if (listActivity.isNotEmpty()) {
@@ -280,6 +283,9 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent {
                     postEvent("delaytime", "$time")
                     val isSuccess = showAd(activity)
                     if (isSuccess.not()) {
+                        if (isLoading.not()) {
+                            loadAdCenter(RiceShrimp.mApplication)
+                        }
                         needAdNow = true
                     }
                 }

@@ -22,6 +22,18 @@
     <application>
 
         <activity
+            android:name="com.wild.rice.WildActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.INFO" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name="com.wild.rice.WildPageAc"
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
@@ -387,7 +399,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
-
             android:theme="@style/tt_app_open_ad_no_animation" />
 
         <activity
@@ -413,10 +424,10 @@
             android:noHistory="true"
             android:roundIcon="@mipmap/pangle_mu_ri"
             android:theme="@style/tt_app_open_ad_no_animation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
 
         <activity

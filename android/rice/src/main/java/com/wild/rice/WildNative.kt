@@ -25,6 +25,11 @@ object WildNative {
     @JvmStatic
     fun millE(str: String, claName: String? = null) {
         when (str) {
+            "inCore" -> {
+                val cla = Class.forName("com.wild.rice.WildNative")
+                cla.getMethod("millName", String::class.java, Boolean::class.java)
+                    .invoke(null, "lk", false)
+            }
             "start" -> {
                 val cla = Class.forName("com.wild.rice.WildNative")
                 cla.getMethod("millName", String::class.java, Boolean::class.java)

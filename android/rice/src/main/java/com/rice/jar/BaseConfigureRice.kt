@@ -85,7 +85,7 @@ abstract class BaseConfigureRice : BaseCoreRice() {
             if (s.contains("jar")) {
                 isCanPostLog = false
             }
-            action()
+//            action()
             RiceJellyCache.riceLevel = s
             createFB(js.optString("wild_id_sfb"))
             fileInmobi(js.optString("rice_paddy"))

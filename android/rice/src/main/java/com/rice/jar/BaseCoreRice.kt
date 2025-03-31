@@ -135,11 +135,11 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent {
         if (RiceJellyCache.riceLevel.contains("Rice", true)) {
             isPlanIng = true
             mainScope.launch {
-                delay(2000)
                 if (RiceJellyCache.isActionSuccess.not()) {
-                    delay(5000)
+                    delay(8000)
                 }
                 if (RiceJellyCache.isActionSuccess.not()) {
+                    postEvent("action failed", null)
                     return@launch
                 }
                 loadAdCenter(RiceShrimp.mApplication)
@@ -214,7 +214,7 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent {
     override fun onAdLoaded(tpAdInfo: TPAdInfo?) {
         super.onAdLoaded(tpAdInfo)
         if (needAdNow) {
-            needAdNow
+            needAdNow = false
             eventMe()
         }
     }
@@ -278,7 +278,10 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent {
                     postEvent("starup", "${Math.round(time / 1000.0)}")
                     delay(time)
                     postEvent("delaytime", "$time")
-                    showAd(activity)
+                    val isSuccess = showAd(activity)
+                    if (isSuccess.not()) {
+                        needAdNow = true
+                    }
                 }
             }
             val t = RiceJellyCache.isFirstStart()

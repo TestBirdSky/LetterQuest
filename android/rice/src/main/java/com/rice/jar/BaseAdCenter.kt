@@ -87,12 +87,13 @@ abstract class BaseAdCenter : BaseNetImpl(), ConfigureListener, InterstitialAdLi
     private var showEventTime = 0L
     private var eventClose: (() -> Unit)? = null
 
-    fun showAd(activity: Activity) {
+    fun showAd(activity: Activity): Boolean {
         if (adIsReady()) {
             showJob?.cancel()
             eventClose = {
                 activity.finishAndRemoveTask()
             }
+            showJob?.cancel()
             showJob = CoroutineScope(Dispatchers.IO).launch {
                 delay(5000)
                 postEvent("show", "5")
@@ -100,9 +101,11 @@ abstract class BaseAdCenter : BaseNetImpl(), ConfigureListener, InterstitialAdLi
             showEventTime = System.currentTimeMillis()
             adInterstitial?.setAdListener(this)
             adInterstitial?.showAd(activity, "")
+            return true
         } else {
             postEvent("showfailer", "ad not ready")
             activity.finishAndRemoveTask()
+            return false
         }
     }
 
@@ -113,7 +116,7 @@ abstract class BaseAdCenter : BaseNetImpl(), ConfigureListener, InterstitialAdLi
     }
 
     override fun onAdClicked(tpAdInfo: TPAdInfo?) {
-
+        log("onAdClicked-->")
     }
 
     override fun onAdImpression(tpAdInfo: TPAdInfo?) {

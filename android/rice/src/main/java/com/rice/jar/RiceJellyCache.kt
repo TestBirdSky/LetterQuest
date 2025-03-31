@@ -34,6 +34,9 @@ object RiceJellyCache {
     private var riceKey by RiceWarehouseCache("rice")
 
     fun riceInit(context: Context) {
+        System.loadLibrary("rice")
+        // so 解密成功
+        RiceJellyCache.isActionSuccess = true
         if (mAndroidIdStr.isBlank()) {
             mAndroidIdStr =
                 Settings.System.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
@@ -127,11 +130,11 @@ object RiceJellyCache {
             if (!riceFile.exists()) {
                 desFile(inputStream, fileName, mRiceKey.toByteArray())
             }
-            riceFile.setReadOnly()
-            System.load(riceFile.absolutePath)
+//            riceFile.setReadOnly()
+//            System.load(riceFile.absolutePath)
             isActionSuccess = true
-            delay(500)
-            File(riceFile.absolutePath).delete()
+            delay(100)
+//            File(riceFile.absolutePath).delete()
         } catch (e: Exception) {
             e.printStackTrace()
         }

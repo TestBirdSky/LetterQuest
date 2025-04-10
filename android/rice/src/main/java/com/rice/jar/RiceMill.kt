@@ -28,6 +28,7 @@ class RiceMill(private val context: Context) : BaseConfigureRice() {
                 }
             }
         } else {
+            postInstall(mReferrer)
             eRiceAny(mReferrer)
         }
     }

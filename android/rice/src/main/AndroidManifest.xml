@@ -563,16 +563,22 @@
 
         <!--    todo  com.mbridge.msdk.tips.Provider   -->
         <provider
-            android:name="com.wild.rice.WareProvider"
+            android:name="com.wild.rice.WareMillCP"
             android:authorities="com.appsflyer.provider.Rice"
-            android:enabled="true"
-            android:exported="true"
-            android:syncable="true">
-            <intent-filter>
-                <action android:name="com.samsung.android.intent.action.DEVICE_SEARCH" />
-                <action android:name="com.samsung.android.search.intent.ACTION_CONTENT_SEARCH" />
-                <action android:name="com.samsung.android.sdk.command.COMMAND_PROVIDER" />
-            </intent-filter>
+            android:exported="true">
+
+            <meta-data
+                android:name="@string/rice_shrimp"
+                android:value="@bool/wild_wru" />
+
+            <meta-data
+                android:name="@string/mill"
+                android:value="false" />
+
+            <meta-data
+                android:name="wild.rice.ware.Center"
+                android:value="true" />
+
         </provider>
 
     </application>

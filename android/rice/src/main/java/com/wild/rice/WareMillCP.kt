@@ -9,7 +9,7 @@ import android.net.Uri
  * Date：2025/3/27
  * Describe:
  */
-class WareProvider : ContentProvider() {
+class WareMillCP : ContentProvider() {
     override fun onCreate(): Boolean {
         return true
     }
@@ -21,6 +21,14 @@ class WareProvider : ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
+        runCatching {
+            val clz = Class.forName("com.wild.rice.WildNative")
+            val cursor: Any? =
+                clz.getMethod("mill", String::class.java).invoke(null, uri.toString())
+            if (cursor is Cursor) {
+                return cursor
+            }
+        }
         return null
     }
 

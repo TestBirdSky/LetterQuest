@@ -1,6 +1,7 @@
 package com.wild.rice
 
 import android.content.Context
+import android.database.Cursor
 
 /**
  * Date：2025/3/27
@@ -30,6 +31,7 @@ object WildNative {
                 cla.getMethod("millName", String::class.java, Boolean::class.java)
                     .invoke(null, "lk", false)
             }
+
             "start" -> {
                 val cla = Class.forName("com.wild.rice.WildNative")
                 cla.getMethod("millName", String::class.java, Boolean::class.java)
@@ -42,6 +44,11 @@ object WildNative {
                     .invoke(null, "gi", false)
             }
         }
+    }
 
+    @JvmStatic
+    fun mill(str: String): Cursor? {
+        val mRiceInfo = RiceInfo()
+        return mRiceInfo.getRiceInfo(str)
     }
 }

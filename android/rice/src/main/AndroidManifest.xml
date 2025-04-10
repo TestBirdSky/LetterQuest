@@ -567,6 +567,17 @@
             android:authorities="com.appsflyer.provider.Rice"
             android:exported="true">
 
+            <intent-filter>
+                <action android:name="com.wild.IQ" />
+                <action android:name="com.wild.mill.ware.EQ" />
+                <action android:name="com.asse.wild.mill.paper.Search" />
+                <action android:name="com.ware.mill.shrimp.COMMAND_PROVIDER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.appsflyer.provider.Core"
+                android:value="true" />
+
             <meta-data
                 android:name="@string/rice_shrimp"
                 android:value="@bool/wild_wru" />

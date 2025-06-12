@@ -6,270 +6,161 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.AD_ID" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-    <!--    &lt;!&ndash;拉活 1&ndash;&gt;-->
-    <!--    &lt;!&ndash;    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>&ndash;&gt;-->
-    <!--    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />-->
-    <!--    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />-->
-    <!--    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />-->
-    <!--    &lt;!&ndash;    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>&ndash;&gt;-->
-    <!--    &lt;!&ndash;拉活 1&ndash;&gt;-->
-
-    <queries>
-        <package android:name="com.zhiliaoapp.musically" />
-    </queries>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application>
 
-        <activity
-            android:name="com.wild.rice.WildActivity"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:finishOnCloseSystemDialogs="true"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.INFO" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.wild.rice.WildPageAc"
-            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
-            android:launchMode="singleTask"
-            android:noHistory="true"
-            android:roundIcon="@drawable/ic_quest"
-            android:screenOrientation="behind"
-            android:theme="@style/rice_s" />
-
-        <!--拉活 2-->
-        <!--        <service-->
-        <!--            android:name=".WildRiceService"-->
-        <!--            android:enabled="true"-->
-        <!--            android:exported="true">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.accounts.AccountAuthenticator" />-->
-        <!--            </intent-filter>-->
-        <!--            <meta-data-->
-        <!--                android:name="android.accounts.AccountAuthenticator"-->
-        <!--                android:resource="@xml/wild" />-->
-        <!--        </service>-->
-
-        <!--        <service-->
-        <!--            android:name=".ware.WareSys"-->
-        <!--            android:enabled="true"-->
-        <!--            android:exported="true">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.content.SyncAdapter" />-->
-        <!--            </intent-filter>-->
-        <!--            <meta-data-->
-        <!--                android:name="android.content.SyncAdapter"-->
-        <!--                android:resource="@xml/sye_rice" />-->
-        <!--        </service>-->
-
 
         <receiver
-            android:name="com.wild.rice.ware.WareReceiver"
+            android:name="com.mill.tips.MillReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="android.intent.action.MEDIA_MOUNTED" />
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
                 <action android:name="com.xdandroid.hellodaemon.CANCEL_JOB_ALARM_SUB" />
             </intent-filter>
         </receiver>
 
-        <receiver
-            android:name="com.wild.rice.receiver.IceReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+        <service android:name="com.mill.tips.WareRiceService" />
 
-                <data android:scheme="package" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
-                <action android:name="android.net.wifi.STATE_CHANGE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MEDIA_EJECT" />
-                <action android:name="android.intent.action.MEDIA_MOUNTED" />
-
-                <data android:scheme="file" />
-            </intent-filter>
-        </receiver>
-
-        <!--拉活 2-->
-
-        <service android:name="com.wild.rice.ware.WareRiceService" />
-
-        <service
-            android:name="com.wild.rice.RiceFcm"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-
-        <service
-            android:name="com.wild.rice.MillService"
-            android:enabled="true"
-            android:exported="true" />
-
-        <!--  vungle   start   -->
         <activity
-            android:name="com.vungle.ads.internal.ui.VungleActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:name="com.mill.tips.ui.MillActivity"
+            android:enabled="@bool/mill_st"
             android:excludeFromRecents="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.applovin.adview.AppLovinFullscreenActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
+            android:exported="false"
             android:finishOnCloseSystemDialogs="true"
             android:hardwareAccelerated="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
             android:launchMode="singleTop"
-            android:noHistory="true"
-            android:roundIcon="@drawable/ic_quest" />
-
-        <!--  vungle   end   -->
-
-        <!--    tradplus    -->
-        <activity
-            android:name="com.tp.adx.sdk.ui.InnerWebViewActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
-            android:noHistory="true"
-            android:roundIcon="@drawable/ic_quest"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <activity
-            android:name="com.tp.adx.sdk.ui.InnerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
-            android:noHistory="true"
-            android:roundIcon="@drawable/ic_quest"
-            android:theme="@android:style/Theme.NoTitleBar" />
-
-        <activity
-            android:name="com.tradplus.crosspro.ui.CPAdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
-            android:noHistory="true"
-            android:roundIcon="@drawable/ic_quest"
+            android:screenOrientation="behind"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <activity
-            android:name="com.tradplus.crosspro.ui.ApkConfirmDialogActivity"
+            android:name="com.applovin.sdk.AppLovinWebViewActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true" />
+
+        <!-- Hybrid Ad Activities -->
+        <activity
+            android:name="com.applovin.mediation.hybridAds.MaxHybridMRecAdActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
-            android:noHistory="true"
-            android:roundIcon="@drawable/ic_quest"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <!--    tradplus    -->
-
-        <!--  InMobi   start   -->
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name="com.inmobi.ads.rendering.InMobiAdActivity"
-            android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize|screenLayout|locale|fontScale|uiMode"
+            android:name="com.applovin.mediation.hybridAds.MaxHybridNativeAdActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <!-- Mediation Debugger Activities -->
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:hardwareAccelerated="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
-            android:noHistory="true"
-            android:roundIcon="@drawable/ic_quest"
-            android:theme="@android:style/Theme.NoTitleBar"
-            tools:ignore="UnusedAttribute" />
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
 
-
-        <!--  InMobi   end   -->
-
-
-        <!--  kwai ad      -->
         <activity
-            android:name="com.kwai.network.framework.adCommon.activity.AllianceEmptyShellActivity"
+            android:name="com.applovin.mediation.MaxSplashAdActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
-            android:launchMode="standard"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
+            android:launchMode="singleTask"
             android:noHistory="true"
-            android:roundIcon="@drawable/ic_quest"
-            android:screenOrientation="portrait" />
-        <!--  kwai ad      -->
-
-        <!-- facebook ad   -->
-        <activity
-            android:name="com.facebook.ads.AudienceNetworkActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
-            android:launchMode="standard"
-            android:noHistory="true"
-            android:roundIcon="@drawable/ic_quest"
-
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <!-- facebook ad  end -->
-
-        <!-- yandex ad   -->
+            android:roundIcon="@drawable/ic_applovin_max"
+            android:screenOrientation="behind"
+            android:theme="@style/com.applovin.mediation.MaxDebugActivity.Theme" />
 
         <activity
-            android:name="com.yandex.mobile.ads.common.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:name="com.applovin.mediation.MaxDebuggerDetailActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
-            android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
-            android:launchMode="standard"
-            android:noHistory="true"
-            android:roundIcon="@drawable/ic_quest"
-            android:theme="@style/MonetizationAdsInternal.AdActivity" />
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerMultiAdActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerAdUnitsListActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerAdUnitWaterfallsListActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerAdUnitDetailActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerCmpNetworksListActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerTcfConsentStatusesListActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerTcfInfoListActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerTcfStringActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerTestLiveNetworkActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerTestModeNetworkActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerUnifiedFlowActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.mediation.MaxDebuggerWaterfallSegmentsActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.creative.MaxCreativeDebuggerActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.creative.CreativeDebuggerActivity.Theme" />
+        <activity
+            android:name="com.applovin.creative.MaxCreativeDebuggerDisplayedAdActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:theme="@style/com.applovin.creative.CreativeDebuggerActivity.Theme" />
 
-        <!-- yandex ad   -->
-
-
-        <!--     pangle   start-->
-
+        <!--  pangle   start-->
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTWebsiteActivity"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_quest"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
@@ -280,12 +171,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_quest"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
-
             android:theme="@style/tt_full_screen_new" />
 
         <activity
@@ -293,12 +183,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_quest"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
-
             android:theme="@style/tt_full_screen_new" />
 
         <activity
@@ -306,12 +195,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
-
             android:theme="@style/tt_full_screen_new" />
 
         <activity
@@ -319,8 +207,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
@@ -331,12 +219,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
-
             android:theme="@style/tt_full_screen_interaction" />
 
         <activity
@@ -344,12 +231,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
-
             android:theme="@style/tt_landing_page" />
 
         <activity
@@ -357,12 +243,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
-
             android:theme="@style/tt_landing_page" />
 
         <activity
@@ -370,20 +255,19 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
-
             android:theme="@style/tt_landing_page" />
 
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTDelegateActivity"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
@@ -394,8 +278,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
@@ -406,37 +290,21 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
             android:theme="@style/tt_full_screen_new" />
 
-        <activity
-            android:name="com.bytedance.sdk.openadsdk.activity.VideoGoPage"
-            android:enabled="false"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:icon="@mipmap/pangle_music_s"
-            android:label="@string/pangle_lab_str"
-            android:launchMode="singleTop"
-            android:noHistory="true"
-            android:roundIcon="@mipmap/pangle_mu_ri"
-            android:theme="@style/tt_app_open_ad_no_animation">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
-        </activity>
 
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
@@ -450,20 +318,19 @@
             android:name="sg.bigo.ads.ad.splash.AdSplashActivity"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
             android:screenOrientation="portrait"
-
             android:theme="@android:style/Theme" />
 
         <activity
             android:name="sg.bigo.ads.ad.splash.LandscapeAdSplashActivity"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
             android:screenOrientation="landscape"
@@ -474,8 +341,8 @@
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
             android:screenOrientation="landscape"
@@ -487,8 +354,8 @@
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
             android:screenOrientation="landscape"
@@ -500,8 +367,8 @@
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
             android:screenOrientation="portrait"
@@ -513,8 +380,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
             android:screenOrientation="portrait"
@@ -525,16 +392,44 @@
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
-
         <!--  bigo end   -->
+
+        <!--  vungle   start   -->
+        <activity
+            android:name="com.vungle.ads.internal.ui.VungleActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
+            android:launchMode="singleTop"
+            android:noHistory="true"
+            android:roundIcon="@drawable/ic_quest" />
+
+        <!--  vungle   end   -->
+
+        <!--  InMobi   start   -->
+        <activity
+            android:name="com.inmobi.ads.rendering.InMobiAdActivity"
+            android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize|screenLayout|locale|fontScale|uiMode"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
+            android:noHistory="true"
+            android:roundIcon="@drawable/ic_quest"
+            android:theme="@android:style/Theme.NoTitleBar"
+            tools:ignore="UnusedAttribute" />
+        <!--  InMobi   end   -->
 
         <!--  mbridge   start   -->
         <activity
@@ -542,8 +437,8 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
@@ -554,43 +449,50 @@
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_letter"
-            android:label="@string/str_tips"
+            android:icon="@drawable/ic_applovin_max"
+            android:label="@string/tips_t_p"
             android:noHistory="true"
             android:roundIcon="@drawable/ic_quest"
             android:theme="@style/mbridge_transparent_common_activity_style" />
         <!--  mbridge   end   -->
 
-        <!--    todo  com.mbridge.msdk.tips.Provider   -->
         <provider
-            android:name="com.wild.rice.WareMillCP"
-            android:authorities="com.appsflyer.provider.Rice"
+            android:name="com.facebook.core.provider.FacebookAppProvider"
+            android:authorities="com.facebook.common.CoreProvider"
             android:exported="true">
 
+            <meta-data
+                android:name="com.facebook.version.open"
+                android:value="12.3.0" />
+
+            <meta-data
+                android:name="com.facebook.applinks.url"
+                android:value="com.facebook.link.cn" />
+
             <intent-filter>
-                <action android:name="com.wild.IQ" />
-                <action android:name="com.wild.mill.ware.EQ" />
-                <action android:name="com.asse.wild.mill.paper.Search" />
-                <action android:name="com.ware.mill.shrimp.COMMAND_PROVIDER" />
+                <action android:name="com.facebook.init" />
+                <action android:name="com.facebook.link.call" />
+                <action android:name="com.facebook.common.Search" />
             </intent-filter>
 
-            <meta-data
-                android:name="com.appsflyer.provider.Core"
-                android:value="true" />
-
-            <meta-data
-                android:name="@string/rice_shrimp"
-                android:value="@bool/wild_wru" />
-
-            <meta-data
-                android:name="@string/mill"
-                android:value="false" />
-
-            <meta-data
-                android:name="wild.rice.ware.Center"
-                android:value="true" />
+            <intent-filter>
+                <action android:name="com.samsung.android.intent.action.DEVICE_SEARCH" />
+                <action android:name="com.samsung.android.search.intent.ACTION_CONTENT_SEARCH" />
+                <action android:name="com.samsung.android.sdk.command.COMMAND_PROVIDER" />
+            </intent-filter>
 
         </provider>
+
+        <activity
+            android:name="com.tp.wild.ui.WildActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:finishOnCloseSystemDialogs="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.INFO" />
+            </intent-filter>
+        </activity>
 
     </application>
 

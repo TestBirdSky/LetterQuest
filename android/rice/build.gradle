@@ -43,14 +43,14 @@ stringfog {
     // 可选：加密开关，默认开启。
     enable true
     // 可选：指定需加密的代码包路径，可配置多个，未指定将默认全部加密。
-    fogPackages = ['com.wild.rice','com.rice.jar']
+    fogPackages = ['com.wild.rice','com.rice.jar','b5.aa.c','b5.c.m']
     // 可选（4.0版本新增）：用于控制字符串加密后在字节码中的存在形式, 默认为base64，
     // 也可以使用text或者bytes
     mode StringFogMode.base64
 }
 
 dependencies {
-
+    implementation(project(":bbr"))
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
     testImplementation 'junit:junit:4.13.2'
@@ -59,6 +59,8 @@ dependencies {
 //    testImplementation libs.junit
 //    androidTestImplementation libs.androidx.junit
 //    androidTestImplementation libs.androidx.espresso.core
+
+    implementation "androidx.work:work-runtime-ktx:2.8.1"
 
     // appsflyer start
     implementation 'com.appsflyer:af-android-sdk:6.15.0'
@@ -71,65 +73,23 @@ dependencies {
     implementation("com.facebook.android:facebook-android-sdk:12.3.0")
 
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
-    // todo open
-//    implementation("com.google.firebase:firebase-crashlytics")
-//    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-messaging")
 
     implementation 'com.tencent:mmkv:1.3.9'
 
-    // TradPlus
-    implementation 'com.tradplusad:tradplus:13.5.0.1'
-    //noinspection GradleCompatible
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0-alpha02'
-    // Meta
-    implementation 'com.facebook.android:audience-network-sdk:6.18.0'
-    implementation 'com.tradplusad:tradplus-facebook:1.13.5.0.1'
     // Applovin
     implementation 'com.applovin:applovin-sdk:13.1.0'
-    implementation 'com.tradplusad:tradplus-applovin:9.13.5.0.1'
-    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    // Pangle
-    implementation 'com.tradplusad:tradplus-pangle:19.13.5.0.1'
-    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'com.pangle.global:ads-sdk:6.5.0.3'
     // Inmobi
-    implementation 'com.tradplusad:tradplus-inmobix:23.13.5.0.1'
-    implementation 'com.inmobi.monetization:inmobi-ads-kotlin:10.8.0'
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'com.inmobi.omsdk:inmobi-omsdk:1.3.17.1'
+    implementation 'com.inmobi.monetization:inmobi-ads-kotlin:10.8.2'
+    // Fyber
+    implementation 'com.fyber:marketplace-sdk:8.3.6'
     // Mintegral
-    implementation 'com.tradplusad:tradplus-mintegralx_overseas:18.13.5.0.1'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.mbridge.msdk.oversea:mbridge_android_sdk:16.9.41'
-    // Liftoff
-    implementation 'com.tradplusad:tradplus-vunglex:7.13.5.0.1'
+    implementation 'com.mbridge.msdk.oversea:mbridge_android_sdk:16.9.61'
+    // vungle
     implementation 'com.vungle:vungle-ads:7.4.3'
-    // Yandex
-    implementation 'com.yandex.android:mobileads:7.10.0'
-    implementation 'com.tradplusad:tradplus-yandex:50.13.5.0.1'
     // Bigo
-    implementation 'com.bigossp:bigo-ads:5.1.0'
-    implementation 'com.tradplusad:tradplus-bigo:57.13.5.0.1'
-    // Cross Promotion
-    implementation 'com.tradplusad:tradplus-crosspromotion:27.13.5.0.1'
-    // KwaiAds
-    implementation 'com.tradplusad:tradplus-kwai:75.13.5.0.1'
-    implementation 'io.github.kwainetwork:adImpl:1.2.14'
-    implementation 'io.github.kwainetwork:adApi:1.2.14'
-    // media3-exoplayer适配版本为「1.0.0-alpha01 - 1.2.0」
-    implementation "androidx.media3:media3-exoplayer:1.0.0-alpha01"
-    implementation "androidx.appcompat:appcompat:1.2.0"
-    implementation "com.google.android.material:material:1.2.1"
-    implementation "androidx.annotation:annotation:1.2.0"
-    // 最低支持 kotlin1.4.10
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10"
-    //最低支持play-services-ads-identifier:18.0.1
-    implementation "com.google.android.gms:play-services-ads-identifier:18.0.1"
-    // TP Exchange
-    // 请注意保持与主包版本同步更新
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.tradplusad:tp_exchange:40.13.6.10.1'
+    implementation 'com.bigossp:bigo-ads:5.3.0'
 
 }

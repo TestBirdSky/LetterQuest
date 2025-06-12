@@ -26,13 +26,6 @@ class JarActivityCallback(private val mRicePageEvent: RicePageEvent) :
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         RiceCenter.log("onActivityCreated-->$activity")
         mRicePageEvent.activityEvent(activity)
-        if (RiceJellyCache.riceLevel.contains("Rice")) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                activity.setTranslucent(true)
-            } else {
-                activity.window.setBackgroundDrawableResource(R.color.ri_color_s)
-            }
-        }
     }
 
     override fun onActivityStarted(activity: Activity) {

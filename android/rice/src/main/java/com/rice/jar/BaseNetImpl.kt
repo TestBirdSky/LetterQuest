@@ -24,66 +24,59 @@ import java.util.UUID
 abstract class BaseNetImpl : RiceAny {
     private val mIoScope = CoroutineScope(Dispatchers.IO)
     protected val okHttps = OkHttpClient()
-    private var mInstallStr by RiceWarehouseCache("no")
+    private var mInstallStr by RiceBoolCache(false)
+
+    private val mSturJson by ReadJsonStr("sturgeon")
+    private val mJsonInstall by ReadJsonStr("json_install")
 
     override fun eRiceAny(any: Any) {}
 
     override fun postInstall(str: String) {
-        if (mInstallStr == "no") {
+        if (mInstallStr.not()) {
             val js = getRiceCommon().apply {
-                put("anyplace", JSONObject().apply {
-                    put("danish", "build/")
-                    put("extra", str)
-                    put("whitney", "")
-                    put("within", "weave")
-                    put("hose", 0L)
-                    put("lisp", 0L)
-                    put("audible", 0L)
-                    put("gruesome", 0L)
-                    put("inferred", 0L)
-                    put("flaunt", RiceJellyCache.mRiceInstallTime)
-                })
+                put(
+                    "impelled",
+                    (mJsonInstall ?: JSONObject()).put("danish", "build/").put("io", str)
+                        .put("polloi", "").put("prussia", RiceJellyCache.mRiceInstallTime)
+                )
             }.toString()
-            requestNet(strToRequest(js), num = 20, success = {
-                mInstallStr = "rice"
+            requestNet(strToRequest(js), num = 33, success = {
+                mInstallStr = true
             })
         }
     }
 
     private val idStr by lazy { RiceJellyCache.mAndroidIdStr }
+    private val json by lazy {
+        JSONObject(
+            """
+            {
+            "armful":"berne",
+            "heron":"_",
+            "hanley":""
+            }
+        """.trimIndent()
+        ).apply {
+            put("bee", idStr)
+            put("choral", Build.MANUFACTURER)
+            put("chili", Build.BRAND)
+            put("foothill", RiceJellyCache.pkgName)
+        }
+    }
 
     protected fun getRiceCommon(): JSONObject {
         return JSONObject().apply {
-            put("felicia", JSONObject().apply {
-                put("mustang", Build.MANUFACTURER)
-            })
-            put("usia", JSONObject().apply {
-                put("aryl", "")
-                put("cuddle", System.currentTimeMillis())
-                put("gout", RiceJellyCache.pkgName)
-            })
-            put("dragging", JSONObject().apply {
-                put("hamster", idStr)
-                put("gee", idStr)
-                put("hopple", UUID.randomUUID().toString())
-                put("folio", Build.BRAND)
-            })
-            put("eventual", JSONObject().apply {
-                put("kinglet", "shire")
-                put("solution", RiceJellyCache.appVersion)
-                put("upright", Build.MODEL)
-                put("cardiff", "_")
-                put("tibetan", Build.VERSION.RELEASE)
-            })
+            put("sturgeon", (mSturJson ?: JSONObject()).put("co", UUID.randomUUID().toString()))
+            put("frock", json.put("claude", System.currentTimeMillis()).put("german", "garfield"))
         }
     }
 
     protected fun postEventRice(name: String, pair: Pair<String, String>? = null) {
         log("postEventRice--->$name --pair=$pair")
         val js = getRiceCommon().apply {
-            put("lorinda", name)
+            put("condone", name)
             if (pair != null) {
-                put("keyes^${pair.first}", pair.second)
+                put("${pair.first}~quipping", pair.second)
             }
         }.toString()
         requestNet(strToRequest(js), num = 3)

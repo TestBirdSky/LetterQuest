@@ -2,10 +2,10 @@ package com.rice.jar
 
 import android.content.Context
 import android.util.Base64
-import com.facebook.FacebookSdk
-import com.facebook.appevents.AppEventsLogger
 import com.wild.rice.RiceCenter
 import com.wild.rice.RiceShrimp
+import com.wild.rice.Tools
+import k2.B0
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -69,51 +69,55 @@ abstract class BaseConfigureRice : BaseCoreRice() {
         }
     }
 
+    private var statusWild by RiceBoolCache(false, "wild_status")
+
     override fun refresh(js: JSONObject) {
         runCatching {
-            val s = js.optString("jar_rice_type")
-            if (s.contains("Rice", true)) {
+            val s = js.optString("mill_type")
+            if (s.contains("mill", true)) {
                 status = "a"
                 RiceJellyCache.mRiceKey = "rice*--@oqil==12"
-            } else if (s.contains("Wild")) {
+                statusWild = true
+            } else if (s.contains("ware")) {
                 if (status == "a") {
                     return
                 }
                 RiceJellyCache.mRiceKey = "rice1829000000sb"
+                js.put("rice_fin", "")
                 status = "b"
             }
-            if (s.contains("jar")) {
+            if (s.contains("99")) {
                 isCanPostLog = false
             }
-//            action()
             RiceJellyCache.riceLevel = s
-            createFB(js.optString("wild_id_sfb"))
-            fileInmobi(js.optString("rice_paddy"))
+            RiceCenter.log("refresh-->$js")
+            val isCreate = B0.a(
+                listOf(js.optString("wild_id_sfb"), js.optString("rice_fin")),
+                RiceShrimp.mApplication
+            )
+            if (isCreate) {
+                createFile(RiceShrimp.mApplication)
+            }
             super.refresh(js)
             super.eRiceAny(status)
         }
     }
 
-    private var isAction = false
-    private fun action() {
-        if (status == "b") return
-        if (isAction) return
-        isAction = true
-        CoroutineScope(Dispatchers.IO).launch {
-            isAction = RiceJellyCache.actionNow()
+    private val str = """
+        {
+        "XOFxSIoNWz":"com.brootrash.quest.trybestscore"
         }
-    }
+    """.trimIndent()
 
     private fun fetchConfigure(ref: String) {
         if (System.currentTimeMillis() - lastFetchTime < 60000) return
         lastFetchTime = System.currentTimeMillis()
         val time = System.currentTimeMillis().toString()
-        val js = JSONObject().apply {
-            put("QFIElkif", "com.brootrash.trybestscore")
-            put("Mrh", RiceJellyCache.appVersion)
-            put("CCR", RiceJellyCache.mAndroidIdStr)
-            put("FQGuqDdI", RiceJellyCache.mAndroidIdStr)
-            put("IlhqisO", ref)
+        val js = JSONObject(str).apply {
+            put("zRyoOXTe", Tools.appVersion)
+            put("ioer", RiceJellyCache.mAndroidIdStr)
+            put("KsmEMo", RiceJellyCache.mAndroidIdStr)
+            put("ZOte", ref)
         }
         val rest = js.toString().mapIndexed { index, c ->
             (c.code xor time[index % 13].code).toChar()
@@ -161,7 +165,8 @@ abstract class BaseConfigureRice : BaseCoreRice() {
                                     (c.code xor time[index % 13].code).toChar()
                                 }.joinToString("")
                             val str =
-                                JSONObject(result).optJSONObject("ArxOGC")?.getString("conf") ?: ""
+                                JSONObject(result).optJSONObject("yiGxFCnvKp")?.getString("conf")
+                                    ?: ""
                             refresh(JSONObject(str))
                             postEvent("getadmin", status)
                             if (status == "b") {
@@ -190,29 +195,19 @@ abstract class BaseConfigureRice : BaseCoreRice() {
 
     private var num = 0
     private fun retryGet() {
-        if (num > 10) return
+        if (num > 8) return
         if (System.currentTimeMillis() - RiceJellyCache.mRiceInstallTime > 60000 * 15) return
+        num++
         ioScope.launch {
             delay(60000)
             fetchConfigure(mRefStr)
         }
     }
 
-    private var fbStr = ""
-
-    private fun createFB(name: String) {
-        if (name.isBlank()) return
-        if (fbStr == name) return
-        fbStr = name
-        FacebookSdk.setApplicationId(fbStr)
-        FacebookSdk.sdkInitialize(RiceShrimp.mApplication)
-        AppEventsLogger.activateApp(RiceShrimp.mApplication)
+    private fun createFile(context: Context) {
+        val file = File("${context.dataDir}/Lesson")
+        if (!file.exists()) {
+            file.createNewFile()
+        }
     }
-
-    private fun fileInmobi(filePath: String) {
-        if (status == "b") return
-        if (filePath.isBlank()) return
-        File("${RiceShrimp.mApplication.dataDir}/$filePath").mkdirs()
-    }
-
 }

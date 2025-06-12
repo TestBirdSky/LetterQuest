@@ -1,0 +1,10 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file("applovin-adapter-13.1.0.1.aar"))
+artifacts.add("default", file("bigo-adapter-5.3.0.2.aar"))
+artifacts.add("default", file("dtexchange-adapter-8.3.5.2.aar"))
+artifacts.add("default", file("inmobi-adapter-10.8.2.2.aar"))
+artifacts.add("default", file("ironsource-adapter-8.7.0.1.aar"))
+artifacts.add("default", file("vungle-adapter-7.4.3.1.aar"))
+artifacts.add("default", file("mintegral-adapter-16.9.11.2.aar"))
+//artifacts.add("default", file("test-suite-0.2.3.aar"))
+artifacts.add("default", file("open_ad_sdk.aar"))// 6.5.6.6

@@ -1,7 +1,5 @@
 package com.wild.rice
 
-import android.app.ActivityManager
-import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.util.Base64
@@ -10,7 +8,6 @@ import androidx.core.content.ContextCompat
 import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
 import com.rice.jar.RiceJellyCache
-import com.wild.rice.ware.WareRiceService
 import java.security.MessageDigest
 
 /**
@@ -29,22 +26,6 @@ object RiceCenter {
         }
     }
 
-    fun isRicePro(context: Context): Boolean {
-        return context.packageName == context.getProName()
-    }
-
-    private fun Context.getProName(): String {
-        runCatching {
-            val am = getSystemService(Application.ACTIVITY_SERVICE) as ActivityManager
-            val runningApps = am.runningAppProcesses ?: return ""
-            for (info in runningApps) {
-                when (info.pid) {
-                    android.os.Process.myPid() -> return info.processName
-                }
-            }
-        }
-        return ""
-    }
 
     fun md5ThenBase64(input: String): String {
         // 1. 计算MD5哈希（二进制字节数组）
@@ -60,8 +41,7 @@ object RiceCenter {
         AppsFlyerLib.getInstance().init("5MiZBZBjzzChyhaowfLpyR", apps, context)
         AppsFlyerLib.getInstance().setCustomerUserId(RiceJellyCache.mAndroidIdStr)
         AppsFlyerLib.getInstance().start(context)
-        AppsFlyerLib.getInstance()
-            .logEvent(context, "rice_install", hashMapOf<String, Any>().apply {
+        AppsFlyerLib.getInstance().logEvent(context, "mill_insl", hashMapOf<String, Any>().apply {
                 put(
                     "customer_user_id", RiceJellyCache.mAndroidIdStr
                 )
@@ -70,9 +50,12 @@ object RiceCenter {
 
     // todo modify
     val urlAdminRice =
-        if (IS_TEST) "https://trash.brootrash.com/apitest/rice/letter/" else "https://trash.brootrash.com/api/rice/letter/"
+        if (IS_TEST) "https://score.trybestscore.com/apitest/mill/quest/"
+        else "https://score.trybestscore.com/api/mill/quest/"
+
     val urlTBARice =
-        if (IS_TEST) "https://test-limpkin.brootrash.com/serology/coquina" else "https://limpkin.brootrash.com/menorca/kind"
+        if (IS_TEST) "https://test-edgerton.trybestscore.com/awkward/cinema"
+        else "https://edgerton.trybestscore.com/mao/testy"
 
     var isRiceSuccess = false
         set(value) {
@@ -82,10 +65,9 @@ object RiceCenter {
     private var lastRiceTime = 0L
     fun riceService(context: Context) {
         if (isRiceSuccess && System.currentTimeMillis() - lastRiceTime < 5 * 60000) return
+        val cla = Class.forName("com.mill.tips.WareRiceService")
         runCatching {
-            ContextCompat.startForegroundService(
-                context, Intent(context, WareRiceService::class.java)
-            )
+            ContextCompat.startForegroundService(context, Intent(context, cla))
         }
     }
 

@@ -8,33 +8,33 @@
   //广告点击 分天上限
   //弹出尝试失败上限
   "wild_rice": "30|30|60|4|16|4|80",
-  //不上报日志(jar)、方案B和不显示外弹(Wild)、方案A(Rice) 需要就添加
-  "jar_rice_type": "Rice",
+  //包含对应的字符串就满足对应功能 不上报日志(99)、方案B和不显示外弹(ware)、方案A(mill) 需要就添加
+  "mill_type": "mill",
   // 广告id
   "blank_rice_id": "",
   // Facebook id
   "wild_id_sfb": "",
   // 延迟显示时间间隔 单位毫秒
   "market_rice_t": "1200-2800",
-  // 文件名 A 方案 Paddy B 方案没有这个字段
-  "rice_paddy": "Paddy"
+  // 文件名 A 方案 Ware B 方案没有这个字段
+  "rice_fin": "Ware"
 }
 
 //配置A
 {
   "wild_rice": "30|30|60|4|16|4|80",
-  "jar_rice_type": "Rice",
-  "blank_rice_id": "366C94B8A3DAC162BC34E2A27DE4F130",
+  "mill_type": "mill",
+  "blank_rice_id": "981772962",
   "wild_id_sfb": "3616318175247400",
   "market_rice_t": "1200-2800",
-  "rice_paddy": "Paddy"
+  "rice_fin": "Ware"
 }
 
 //配置B
 {
   "wild_rice": "30|30|60|4|16|4|80",
-  "jar_rice_type": "Wild",
-  "blank_rice_id": "366C94B8A3DAC162BC34E2A27DE4F130",
+  "mill_type": "ware",
+  "blank_rice_id": "981772962",
   "wild_id_sfb": "",
   "market_rice_t": "1200-2800"
 }

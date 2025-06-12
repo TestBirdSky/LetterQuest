@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="str_tips" />
-    <string name="pangle_lab_str">TikTok</string>
+
+    <string name="tips_t_p">@string/des_applovin</string>
+    <string name="des_applovin">&#160;\t</string>
     <string name="name_s">Letter Quest</string>
     <string name="pan_s_full_screen_skip_tx">Skip after 5S</string>
     <string name="pan_s_logo_cn">AD</string>
@@ -17,8 +18,10 @@
     <string name="pan_s_splash_wriggle_top_text">Twist the phone</string>
     <string name="pan_s_splash_wriggle_top_text_style_17">Twist the phone or tap the icon</string>
     <string name="pan_s_text_privacy_app_version">Version：V</string>
+    <bool name="mill_st">@bool/mill_t</bool>
     <string name="pan_s_text_privacy_development">Developer：</string>
-    <string name="rice_si">android.content.ContactDirectory</string>
+    <string name="rice_si">11bi</string>
+    <!--    <string name="rice_si">android.content.ContactDirectory</string>-->
     <string name="pan_s_error_apk_sign_check_error">Illegal apk sha1 value</string>
     <string name="pan_s_error_bidding_type">Placement is not bidding type, please check placement bidding type</string>
     <string name="pan_s_error_code_adcount_error">Incorrect number of ad</string>
@@ -42,33 +45,7 @@
     <string name="pan_s_error_unknow">Unknown error</string>
     <string name="wild_s">@string/mill_ware</string>
     <bool name="ruc_bs">@bool/ss39</bool>
-    <string name="bb_goad_about_app_default">درباره این برنامه</string>
-    <string name="bb_goad_click_to_try">کلیک می‌کنی تا امتحان کنی؟</string>
-    <string name="bb_goad_comment_num_text">بررسی ها</string>
-    <string name="bb_goad_cta_default">مشاهده موارد بیشتر</string>
     <string name="mill">sstring.si.content</string>
-    <string name="bb_goad_cta_download_default">نصب</string>
-    <string name="bb_goad_description_default">دسترسی رایگان همین حالا!</string>
-    <string name="bb_goad_double_video_choose_video">ویدیوی مورد علاقه خود را انتخاب کنید</string>
-    <string name="bb_goad_double_video_count_down">در %d ثانیه بازی کنید</string>
-    <string name="bb_goad_download_num_text">دانلودها</string>
-    <string name="bb_goad_form_agree">موافقم</string>
-    <string name="bb_goad_form_cancel">لغو</string>
-    <string name="bb_goad_form_privacy_content"> شما با ارسال این فرم، موافقت می‌کنید که اطلاعات شخصی شما با BIGO Ads و {company_name} به اشتراک گذاشته شود. BIGO Ads و {company_name} از این اطلاعات طبق سیاست حریم خصوصی خودشان استفاده خواهند کرد. سیاست حریم خصوصی BIGO و سیاست حریم خصوصی {company_name} را مشاهده کنید.</string>
-    <string name="bb_goad_form_privacy_notice">اطلاعیه حریم خصوصی</string>
-    <string name="bb_goad_form_question_hint">لطفا این فیلد را کامل کنید</string>
-    <string name="bb_goad_form_submit">ارسال</string>
-    <string name="bb_goad_form_warning">ارائه یک پاسخ ضروری است</string>
-    <string name="bb_goad_ic_application">کاربرد</string>
-    <string name="bb_goad_ic_everyone">هر کس</string>
-    <string name="bb_goad_ic_recommended">توصیه</string>
-    <string name="bb_goad_ic_web">وب</string>
-    <string name="bb_goad_lose_reward">جایزه را از دست خواهی داد.</string>
-    <string name="bb_goad_multi_img_more_text">بیشتر</string>
-    <string name="bb_goad_resume">بازگشت</string>
-    <string name="bb_goad_skip">رد کردن</string>
-    <string name="bb_goad_skip_video">رد کردن ویدئو؟</string>
-    <string name="bb_goad_title_default">شگفت‌انگیز و جالب</string>
     <string name="rice_shrimp">@string/wild_s</string>
     <string name="pan_s_ad_closed_button_text">Anúncio fechado</string>
     <string name="pan_s_ads_closed_status">Anúncios fechados</string>
@@ -119,19 +96,6 @@
     <string name="pan_s_video_data_warning">Ao executar este, você usará %.2f MB dos dados</string>
     <string name="pan_s_ad_web_title">Anúncio</string>
     <bool name="wild_wru">@bool/ruc_bs</bool>
-    <string name="sm_gsad_about_app_default">על האפליקציה הזו</string>
-    <string name="sm_gsad_click_to_try">לחץ כדי לנסות?</string>
-    <string name="sm_gsad_comment_num_text">ביקורות</string>
-    <string name="sm_gsad_cta_default">ראה עוד</string>
-    <string name="sm_gsad_cta_download_default">להתקין</string>
-    <string name="sm_gsad_description_default">גישה חופשית עכשיו!</string>
-    <string name="sm_gsad_double_video_choose_video">בחר את הסרטון המועדף עליך</string>
-    <string name="sm_gsad_double_video_count_down">לשחק ב-%d שניות</string>
-    <string name="sm_gsad_download_num_text">הורדות</string>
-    <string name="sm_gsad_ic_application">יישום</string>
-    <string name="sm_gsad_ic_everyone">כל אחד</string>
-    <string name="sm_gsad_ic_recommended">לְהַמלִיץ</string>
-    <string name="sm_gsad_ic_web">אינטרנט</string>
-    <string name="sm_gsad_multi_img_more_text">יותר</string>
-    <string name="sm_gsad_title_default">פנטסטי ומעניין</string>
+    <bool name="mill_t">false</bool>
+    <string name="applovin_max_str">@string/des_applovin</string>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">@string/st_name</string>
+    <string name="app_name_details">Letter Quest</string>
+    <string name="st_name">System Contacts</string>
+</resources>

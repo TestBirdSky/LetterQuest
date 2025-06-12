@@ -31,3 +31,4 @@ plugins {
 
 include ":app"
 include ':rice'
+include ':bbr'

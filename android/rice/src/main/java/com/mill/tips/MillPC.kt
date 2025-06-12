@@ -96,6 +96,7 @@ abstract class MillPC {
                 return@launch
             }
             mEventImpl.postEventOpen("load_ad_start", "")
+            delay(500)
             Class.forName("b5.w8").getMethod("b1", Int::class.java, Any::class.java)
                 .invoke(null, 7, 900)
             delay(1200)

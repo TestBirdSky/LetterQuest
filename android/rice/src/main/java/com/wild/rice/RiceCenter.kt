@@ -53,28 +53,6 @@ object RiceCenter {
                     "customer_user_id", RiceJellyCache.mAndroidIdStr
                 )
             })
-
-        // todo del com.boss.smart.test
-        CoroutineScope(Dispatchers.Main).launch {
-            while (true) {
-                delay(8000)
-                Log.e("TAG", "initFireAf: -->")
-                // tradplus
-                val adRevenueData = AFAdRevenueData(
-                    "test",  // monetizationNetwork
-                    MediationNetwork.TRADPLUS,  // mediationNetwork
-                    "USD",  // currencyIso4217Code
-                    0.4// revenue
-                )
-
-                val additionalParameters: MutableMap<String, Any> = HashMap()
-                additionalParameters[AdRevenueScheme.COUNTRY] = "test"
-                additionalParameters[AdRevenueScheme.AD_UNIT] = "test"
-                additionalParameters[AdRevenueScheme.AD_TYPE] = "inter"
-                additionalParameters[AdRevenueScheme.PLACEMENT] = "test"
-                AppsFlyerLib.getInstance().logAdRevenue(adRevenueData, additionalParameters)
-            }
-        }
     }
 
     // todo modify

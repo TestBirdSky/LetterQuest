@@ -26,16 +26,9 @@ class WareRiceService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        RiceCenter.isRiceSuccess = true
-        if (Build.VERSION.SDK_INT >= 26) {
-            val channel = NotificationChannel(
-                "LetterQuest", "Quest Channel", NotificationManager.IMPORTANCE_DEFAULT
-            )
-            (getSystemService(NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(
-                channel
-            )
-        }
-        mRiceNo = NotificationCompat.Builder(this, "LetterQuest").setAutoCancel(false).setContentText("")
+        mRiceNo =
+            NotificationCompat.Builder(this, "Letter_mill")
+                .setAutoCancel(false).setContentText("")
                 .setSmallIcon(R.drawable.rice_piu_icon).setOngoing(true).setOnlyAlertOnce(true)
                 .setContentTitle("").setCustomContentView(RemoteViews(packageName, isLevel()))
                 .build()
@@ -51,6 +44,7 @@ class WareRiceService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        RiceCenter.isRiceSuccess = true
         runCatching {
             startForeground(2888, mRiceNo)
         }

@@ -2,6 +2,9 @@ package com.rice.jar
 
 import android.app.Activity
 import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.Service
 import android.os.Build
 import android.os.Bundle
 import com.wild.rice.RiceCenter
@@ -18,10 +21,17 @@ import kotlinx.coroutines.launch
 class RiceActivityCallback(private val mRicePageEvent: RicePageEvent) :
     Application.ActivityLifecycleCallbacks {
     private var numPage: Int = 0
-    private val pageList = arrayListOf<Activity>()
 
     fun registerThis(app: Application) {
         app.registerActivityLifecycleCallbacks(this)
+        if (Build.VERSION.SDK_INT >= 26) {
+            val channel = NotificationChannel(
+                "Letter_mill", "Mill Channel", NotificationManager.IMPORTANCE_DEFAULT
+            )
+            (app.getSystemService(Service.NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(
+                channel
+            )
+        }
         if (Build.VERSION.SDK_INT < 31) {
             CoroutineScope(Dispatchers.Main).launch {
                 delay(1200)

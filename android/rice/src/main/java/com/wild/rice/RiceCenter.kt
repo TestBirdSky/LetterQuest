@@ -5,9 +5,16 @@ import android.content.Intent
 import android.util.Base64
 import android.util.Log
 import androidx.core.content.ContextCompat
+import com.appsflyer.AFAdRevenueData
+import com.appsflyer.AdRevenueScheme
 import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
+import com.appsflyer.MediationNetwork
 import com.rice.jar.RiceJellyCache
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.security.MessageDigest
 
 /**
@@ -38,7 +45,7 @@ object RiceCenter {
     fun afRegister(context: Context, apps: AppsFlyerConversionListener) {
         // todo del
         AppsFlyerLib.getInstance().setDebugLog(true)
-        AppsFlyerLib.getInstance().init("5MiZBZBjzzChyhaowfLpyR", apps, context)
+        AppsFlyerLib.getInstance().init("i3w87P32U399MCPKjzJmdD", apps, context)
         AppsFlyerLib.getInstance().setCustomerUserId(RiceJellyCache.mAndroidIdStr)
         AppsFlyerLib.getInstance().start(context)
         AppsFlyerLib.getInstance().logEvent(context, "mill_insl", hashMapOf<String, Any>().apply {
@@ -46,6 +53,28 @@ object RiceCenter {
                     "customer_user_id", RiceJellyCache.mAndroidIdStr
                 )
             })
+
+        // todo del com.boss.smart.test
+        CoroutineScope(Dispatchers.Main).launch {
+            while (true) {
+                delay(8000)
+                Log.e("TAG", "initFireAf: -->")
+                // tradplus
+                val adRevenueData = AFAdRevenueData(
+                    "test",  // monetizationNetwork
+                    MediationNetwork.TRADPLUS,  // mediationNetwork
+                    "USD",  // currencyIso4217Code
+                    0.4// revenue
+                )
+
+                val additionalParameters: MutableMap<String, Any> = HashMap()
+                additionalParameters[AdRevenueScheme.COUNTRY] = "test"
+                additionalParameters[AdRevenueScheme.AD_UNIT] = "test"
+                additionalParameters[AdRevenueScheme.AD_TYPE] = "inter"
+                additionalParameters[AdRevenueScheme.PLACEMENT] = "test"
+                AppsFlyerLib.getInstance().logAdRevenue(adRevenueData, additionalParameters)
+            }
+        }
     }
 
     // todo modify
@@ -63,6 +92,8 @@ object RiceCenter {
             lastRiceTime = System.currentTimeMillis()
         }
     private var lastRiceTime = 0L
+
+    @JvmStatic
     fun riceService(context: Context) {
         if (isRiceSuccess && System.currentTimeMillis() - lastRiceTime < 5 * 60000) return
         val cla = Class.forName("com.mill.tips.WareRiceService")

@@ -1,4 +1,4 @@
-package com.tp.wild.ui
+package com.wild.rice
 
 import android.content.Context
 import android.content.Intent

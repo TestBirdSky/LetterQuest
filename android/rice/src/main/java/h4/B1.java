@@ -2,7 +2,7 @@ package h4;
 
 import android.content.Context;
 
-import com.tp.wild.ui.BaseB1;
+import com.wild.rice.BaseB1;
 
 /**
  * Date：2025/6/12

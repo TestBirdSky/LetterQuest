@@ -22,7 +22,7 @@ class RiceMill(private val context: Context) : BaseConfigureRice() {
     fun riceFetch() {
         if (mReferrer.isBlank()) {
             ioScope.launch {
-                while (true) {
+                while (mReferrer.isBlank()) {
                     fetchReferrer()
                     delay(20000)
                 }

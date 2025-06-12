@@ -85,6 +85,7 @@ class PangleImpl(val context: Context) : BaseAdHelper() {
             ad.setAdInteractionCallback(object : PAGInterstitialAdInteractionCallback() {
                 override fun onAdShowFailed(pagErrorModel: PAGErrorModel) {
                     super.onAdShowFailed(pagErrorModel)
+                    isShowingAd = false
                     showJob?.cancel()
                     activity.finishAndRemoveTask()
                 }
@@ -109,6 +110,7 @@ class PangleImpl(val context: Context) : BaseAdHelper() {
                 override fun onAdDismissed() {
                     super.onAdDismissed()
                     isShowingAd = false
+                    activity.finishAndRemoveTask()
                 }
             })
             ad.show(activity)

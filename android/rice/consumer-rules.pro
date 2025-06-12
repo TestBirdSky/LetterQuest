@@ -20,8 +20,10 @@
 -keep class kotlin.jvm.internal.** { *; }
 -keep public class com.android.installreferrer.** { *; }
 #appsflyer end
+#
+##tradplus start
+#-keep public class com.tradplus.** { *; }
+#-keep class com.tradplus.ads.** { *; }
+##tradplus end
 
-#tradplus start
--keep public class com.tradplus.** { *; }
--keep class com.tradplus.ads.** { *; }
-#tradplus end
+-keep class com.bytedance.sdk.** { *; }

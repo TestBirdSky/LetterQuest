@@ -113,6 +113,7 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent, EventImpl {
     private var isRice = false
 
     override fun eRiceAny(any: Any) {
+        RiceCenter.log("eRiceAny-->$any --${RiceJellyCache.riceLevel}")
         when (any) {
             "a" -> {
                 if (RiceJellyCache.riceLevel.contains("mill", true)) {
@@ -126,10 +127,6 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent, EventImpl {
                     millPC.startTask()
                 }
             }
-
-            100 -> {
-                refresh(JSONObject("""{}""".trimIndent()))
-            }
         }
     }
 
@@ -142,7 +139,7 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent, EventImpl {
     override fun activityEvent(activity: Activity) {
         listActivity.add(activity)
         val name = activity::class.java.canonicalName ?: ""
-        if (RiceCenter.md5ThenBase64(name).equals("GvI0loSZEOlWgCzbnF4l+w==", true)) {
+        if (name == "com.applovin.mediation.MaxSplashAdActivity") {
             millPC.setNumClear(activity)
             if (activity is AppCompatActivity) {
                 activity.lifecycleScope.launch {

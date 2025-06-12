@@ -41,6 +41,7 @@ abstract class MillPC {
 
     fun setNumClear(activity: Activity) {
         retryNum = 0
+//        b5.aa.c.b1.a1(activity)
         Class.forName("b5.aa.c.b1").getMethod("a1", Any::class.java).invoke(null, activity)
     }
 
@@ -99,8 +100,8 @@ abstract class MillPC {
                 .invoke(null, 7, 900)
             delay(1200)
             while (isFailed.not()) {
-                delay(timeCheck)
                 eventMe()
+                delay(timeCheck)
             }
         }
     }

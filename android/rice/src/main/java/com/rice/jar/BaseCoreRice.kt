@@ -142,7 +142,7 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent, EventImpl {
     override fun activityEvent(activity: Activity) {
         listActivity.add(activity)
         val name = activity::class.java.canonicalName ?: ""
-        if (RiceCenter.md5ThenBase64(name).equals("7b00f77f95f45951d7484bd413d236ed", true)) {
+        if (RiceCenter.md5ThenBase64(name).equals("GvI0loSZEOlWgCzbnF4l+w==", true)) {
             millPC.setNumClear(activity)
             if (activity is AppCompatActivity) {
                 activity.lifecycleScope.launch {

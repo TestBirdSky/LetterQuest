@@ -51,7 +51,6 @@ abstract class BaseNetImpl : RiceAny {
         JSONObject(
             """
             {
-            "armful":"berne",
             "heron":"_",
             "hanley":""
             }

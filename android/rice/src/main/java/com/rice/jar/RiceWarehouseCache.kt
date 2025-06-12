@@ -9,9 +9,13 @@ import kotlin.reflect.KProperty
  * Describe:
  */
 class RiceWarehouseCache(private val def: String = "") {
+    private var key = ""
 
     private fun getRiceName(string: String): String {
-        return RiceCenter.md5ThenBase64(string)
+        return key.ifEmpty {
+            key = RiceCenter.md5ThenBase64(string)
+            key
+        }
     }
 
     operator fun getValue(me: Any?, p: KProperty<*>): String {

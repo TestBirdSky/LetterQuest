@@ -4,14 +4,18 @@ import android.app.Activity
 import android.app.Application
 import android.os.Build
 import android.os.Bundle
-import com.wild.rice.R
 import com.wild.rice.RiceCenter
+import com.wild.rice.Tools
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * Date：2025/3/19
  * Describe:
  */
-class JarActivityCallback(private val mRicePageEvent: RicePageEvent) :
+class RiceActivityCallback(private val mRicePageEvent: RicePageEvent) :
     Application.ActivityLifecycleCallbacks {
     private var numPage: Int = 0
     private val pageList = arrayListOf<Activity>()
@@ -19,7 +23,10 @@ class JarActivityCallback(private val mRicePageEvent: RicePageEvent) :
     fun registerThis(app: Application) {
         app.registerActivityLifecycleCallbacks(this)
         if (Build.VERSION.SDK_INT < 31) {
-            RiceCenter.riceService(app)
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(1200)
+                RiceCenter.riceService(app)
+            }
         }
     }
 
@@ -39,7 +46,7 @@ class JarActivityCallback(private val mRicePageEvent: RicePageEvent) :
     }
 
     override fun onActivityPaused(activity: Activity) {
-        RiceCenter.log("onActivityPaused-->$activity")
+//        RiceCenter.log("onActivityPaused-->$activity")
     }
 
     override fun onActivityStopped(activity: Activity) {
@@ -47,11 +54,7 @@ class JarActivityCallback(private val mRicePageEvent: RicePageEvent) :
         numPage--
         if (numPage <= 0) {
             numPage = 0
-            if (RiceJellyCache.riceLevel.contains("Rice")) {
-                ArrayList(pageList).forEach {
-                    it.finishAndRemoveTask()
-                }
-            }
+            Tools.eventImpl.postEventOpen("finishpage", "")
         }
     }
 

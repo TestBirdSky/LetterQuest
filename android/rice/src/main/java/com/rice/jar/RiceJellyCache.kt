@@ -15,11 +15,11 @@ import java.util.UUID
 object RiceJellyCache {
     var mRiceInstallTime = 0L
     var mAndroidIdStr by RiceWarehouseCache()
-    var riceLevel by RiceWarehouseCache()
+    var riceLevel = ""
     var mRiceKey by RiceWarehouseCache("wiusj")
     var pkgName = ""
 
-    private var riceKey by RiceWarehouseCache("rice")
+
 
     fun riceInit(context: Context) {
         if (mAndroidIdStr.isBlank()) {
@@ -30,13 +30,6 @@ object RiceJellyCache {
         pkgName = context.packageName
         mRiceInstallTime = context.packageManager.getPackageInfo(pkgName, 0).firstInstallTime
 
-        if (riceKey == "rice") {
-            runCatching {
-                Firebase.messaging.subscribeToTopic("mill_fcm").addOnSuccessListener {
-                    riceKey = "mill"
-                }
-            }
-        }
     }
 
     private var lastPostTime by RiceWarehouseCache("0")

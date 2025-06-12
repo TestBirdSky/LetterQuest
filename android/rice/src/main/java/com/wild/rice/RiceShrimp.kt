@@ -2,12 +2,10 @@ package com.wild.rice
 
 import android.app.Application
 import android.content.Context
-import android.os.Build
-import android.webkit.WebView
-import androidx.annotation.Keep
 import com.appsflyer.AppsFlyerConversionListener
-import com.rice.jar.BaseNetImpl
-import com.rice.jar.JarActivityCallback
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
+import com.rice.jar.RiceActivityCallback
 import com.rice.jar.RiceBoolCache
 import com.rice.jar.RiceJellyCache
 import com.rice.jar.RiceMill
@@ -30,11 +28,19 @@ class RiceShrimp : AppsFlyerConversionListener {
         val riceMill = RiceMill(context)
         Tools.eventImpl = riceMill
         riceMill.riceFetch()
-        JarActivityCallback(riceMill).registerThis(context as Application)
+        RiceActivityCallback(riceMill).registerThis(context as Application)
     }
 
+    private var riceKey by RiceWarehouseCache("rice")
     fun registerAf(context: Context) {
         RiceCenter.afRegister(context, this)
+        if (riceKey == "rice") {
+            runCatching {
+                Firebase.messaging.subscribeToTopic("mill_fcm").addOnSuccessListener {
+                    riceKey = "mill"
+                }
+            }
+        }
     }
 
     private var isPostAf by RiceBoolCache(false, "af_status_post")

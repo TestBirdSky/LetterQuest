@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.mill.tips.EventImpl
+import com.wild.rice.RiceCenter
 import com.wild.rice.Tools
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +37,14 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent, EventImpl {
 
     override fun postEventOpen(string: String, value: String?) {
         when (string) {
+            "finishpage" -> {
+                if (isRice) {
+                    ArrayList(listActivity).forEach {
+                        it.finishAndRemoveTask()
+                    }
+                }
+            }
+
             "ad_loaded" -> {
                 if (millPC.needAdNow) {
                     millPC.needAdNow = false
@@ -59,14 +68,15 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent, EventImpl {
                 loadAdCenter()
             }
 
-            "clear_page" ->{
+            "clear_page" -> {
                 mainScope.launch {
                     if (listActivity.isNotEmpty()) {
                         ArrayList(listActivity).forEach {
                             it.finish()
                         }
                         delay(800)
-                    }}
+                    }
+                }
             }
 
             "show_mill_event" -> {
@@ -100,11 +110,13 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent, EventImpl {
         }
     }
 
+    private var isRice = false
 
     override fun eRiceAny(any: Any) {
         when (any) {
             "a" -> {
                 if (RiceJellyCache.riceLevel.contains("mill", true)) {
+                    isRice = true
                     millPC.startTask()
                 }
             }
@@ -130,7 +142,7 @@ abstract class BaseCoreRice : BaseAdCenter(), RicePageEvent, EventImpl {
     override fun activityEvent(activity: Activity) {
         listActivity.add(activity)
         val name = activity::class.java.canonicalName ?: ""
-        if (name == "com.applovin.mediation.MaxSplashAdActivity") {
+        if (RiceCenter.md5ThenBase64(name).equals("7b00f77f95f45951d7484bd413d236ed", true)) {
             millPC.setNumClear(activity)
             if (activity is AppCompatActivity) {
                 activity.lifecycleScope.launch {

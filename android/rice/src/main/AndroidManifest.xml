@@ -31,7 +31,6 @@
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
             android:exported="false"
-            android:finishOnCloseSystemDialogs="true"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:screenOrientation="behind"
@@ -49,9 +48,6 @@
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
             android:exported="false"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_applovin_max"
-            android:label="@string/tips_t_p"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name="com.applovin.mediation.hybridAds.MaxHybridNativeAdActivity"
@@ -63,7 +59,6 @@
             android:name="com.applovin.mediation.MaxDebuggerActivity"
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
-            android:finishOnCloseSystemDialogs="true"
             android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
 
         <activity
@@ -71,7 +66,6 @@
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
             android:exported="false"
-            android:finishOnCloseSystemDialogs="true"
             android:icon="@drawable/ic_applovin_max"
             android:label="@string/tips_t_p"
             android:launchMode="singleTask"
@@ -84,7 +78,6 @@
             android:name="com.applovin.mediation.MaxDebuggerDetailActivity"
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
-            android:finishOnCloseSystemDialogs="true"
             android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
         <activity
             android:name="com.applovin.mediation.MaxDebuggerMultiAdActivity"
@@ -166,9 +159,6 @@
             android:name="sg.bigo.ads.api.LandscapeAdActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_applovin_max"
-            android:label="@string/tips_t_p"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -177,9 +167,6 @@
             android:name="sg.bigo.ads.api.LandscapeCompanionAdActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_applovin_max"
-            android:label="@string/tips_t_p"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -188,9 +175,6 @@
             android:name="sg.bigo.ads.api.AdActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_applovin_max"
-            android:label="@string/tips_t_p"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -199,9 +183,6 @@
             android:name="sg.bigo.ads.core.mraid.MraidVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_applovin_max"
-            android:label="@string/tips_t_p"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
@@ -209,9 +190,6 @@
             android:name="sg.bigo.ads.api.CompanionAdActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_applovin_max"
-            android:label="@string/tips_t_p"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -222,12 +200,8 @@
             android:name="com.vungle.ads.internal.ui.VungleActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
-            android:finishOnCloseSystemDialogs="true"
             android:hardwareAccelerated="true"
-            android:icon="@drawable/ic_applovin_max"
-            android:label="@string/tips_t_p"
-            android:launchMode="singleTop"
-             />
+            android:launchMode="singleTop" />
 
         <!--  vungle   end   -->
 
@@ -236,10 +210,7 @@
             android:name="com.inmobi.ads.rendering.InMobiAdActivity"
             android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize|screenLayout|locale|fontScale|uiMode"
             android:excludeFromRecents="true"
-            android:finishOnCloseSystemDialogs="true"
             android:hardwareAccelerated="true"
-            android:icon="@drawable/ic_applovin_max"
-            android:label="@string/tips_t_p"
             android:theme="@android:style/Theme.NoTitleBar"
             tools:ignore="UnusedAttribute" />
         <!--  InMobi   end   -->
@@ -249,9 +220,6 @@
             android:name="com.mbridge.msdk.reward.player.MBRewardVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:excludeFromRecents="true"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_applovin_max"
-            android:label="@string/tips_t_p"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
@@ -259,9 +227,6 @@
             android:configChanges="keyboard|orientation"
             android:excludeFromRecents="true"
             android:exported="false"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_applovin_max"
-            android:label="@string/tips_t_p"
             android:theme="@style/mbridge_transparent_common_activity_style" />
         <!--  mbridge   end   -->
 
